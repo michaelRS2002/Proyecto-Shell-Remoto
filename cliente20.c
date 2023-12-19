@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
       printf("Cerrando conexion con servidor...\n");
       break;
     }
-       if (strncmp(comando, "create", 6) == 0) { // Si el comando comienza con "file "
+       if (strncmp(comando, "create", 6) == 0) { // Si el comando comienza con "create"
     char *filename = strchr(comando, ' ');
       if (filename != NULL) {
         filename++; // Avanzar al nombre del archivo después del espacio
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
         }
       }
     }
-    if (strncmp(comando, "edit", 4) == 0) { // Si el comando comienza con "file "
+    if (strncmp(comando, "edit", 4) == 0) { // Si el comando comienza con "edit "
     char *filename = strchr(comando, ' ');
       if (filename != NULL) {
         filename++; // Avanzar al nombre del archivo después del espacio
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
         }
       }
     }
-    if (strncmp(comando, "delete", 6) == 0) { // Si el comando comienza con "file "
+    if (strncmp(comando, "delete", 6) == 0) { // Si el comando comienza con "delete "
     char *filename = strchr(comando, ' ');
       if (filename != NULL) {
         filename++; // Avanzar al nombre del archivo después del espacio
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
         // Si el servidor envía la señal para editar con nano
         if (strcmp(response, "El Archivo ha sido borrado.") == 0) {
             // Abrir nano para editar el archivo recibido directamente
-            printf("El archivo %s\n ha sido borrado del servidor", filename);
+            printf("El archivo %s\n ha sido borrado del servidor.\n", filename);
             continue;
         }
         if(strcmp(response,"No se pudo borrar el archivo.") == 0){
