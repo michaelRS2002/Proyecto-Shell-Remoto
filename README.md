@@ -31,6 +31,12 @@ Comando `Ctrl+D`
 Comando `Ctrl+D`
 
 ## Tercer Paso 
-Si estamos usando la aplicacion en el mismo computador dividimos la terminal e inicializamos primero el servidor con:
+Si estamos usando la aplicacion en el mismo computador dividimos la terminal con:
+
+`tmux`
+
+`Ctrl+B` + `Ctrl+2`
+
+Inicializamos el servidor: 
 
 `docker start servidor`
