@@ -60,13 +60,16 @@ int main(int argc, char *argv[])
         TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
 
         // Si el servidor envía la señal para editar con nano
-        if (strcmp(response, "Puedes editar el archivo con nano") == 0) {
-            // Abrir nano para editar el archivo recibido directamente
-            char comandoEdit[100];
-            sprintf(comandoEdit, "nano %s", filename);
-            system(comandoEdit);
+        if (strcmp(response, "Se ha creado el archivo") == 0) {
+            // Archivo creado correctamente
+            printf("El archivo se creo para editarlo escribir edit %s\n", filename);
             continue;
         }
+        if (strcmp(response, "Se ha creado el archivo") == 0) {
+            // Archivo creado correctamente
+            printf("El archivo se creo para editarlo escribir edit %s\n", filename);
+            continue;
+        
       }
     }
     if (strncmp(comando, "edit", 4) == 0) { // Si el comando comienza con "file "
