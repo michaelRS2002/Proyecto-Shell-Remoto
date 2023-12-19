@@ -47,6 +47,28 @@ int main(int argc, char *argv[])
       printf("Cerrando conexion con servidor...\n");
       break;
     }
+       if (strncmp(comando, "create", 6) == 0) { // Si el comando comienza con "file "
+    char *filename = strchr(comando, ' ');
+      if (filename != NULL) {
+        filename++; // Avanzar al nombre del archivo después del espacio
+
+        // Enviar el nombre del archivo al servidor
+        TCP_Write_String(clientSocket, filename);
+        printf("Crear archivo: %s\n", filename);
+
+        char response[MAX_RESPONSE_LENGTH];
+        TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
+
+        // Si el servidor envía la señal para editar con nano
+        if (strcmp(response, "Puedes editar el archivo con nano") == 0) {
+            // Abrir nano para editar el archivo recibido directamente
+            char comandoEdit[100];
+            sprintf(comandoEdit, "nano %s", filename);
+            system(comandoEdit);
+            continue;
+        }
+      }
+    }
     if (strncmp(comando, "edit", 4) == 0) { // Si el comando comienza con "file "
     char *filename = strchr(comando, ' ');
       if (filename != NULL) {
