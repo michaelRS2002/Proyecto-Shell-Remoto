@@ -3,8 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include "doc_code/tcp.h"
-#include "doc_code/leercadena.h"
+#include "tcp.h"
+#include "leercadena.h"
 
 #define SERVER_PORT 12348
 #define MAX_RESPONSE_LENGTH BUFSIZ
