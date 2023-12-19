@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     char comando[MAX_COMMAND_LENGTH];
     bzero(comando, MAX_COMMAND_LENGTH);
 
-    printf("%sDigite su comando (escriba '%ssalida%s' para salir): %s", ANSI_COLOR_BLUE, ANSI_COLOR_RED, ANSI_COLOR_BLUE, ANSI_COLOR_RESET);
+    printf("%sDigite su comando (escriba '%ssalida%s' para salir):> %s", ANSI_COLOR_BLUE, ANSI_COLOR_RED, ANSI_COLOR_BLUE, ANSI_COLOR_RESET);
     leer_de_teclado(MAX_COMMAND_LENGTH, comando);
 
     TCP_Write_String(clientSocket, comando);
