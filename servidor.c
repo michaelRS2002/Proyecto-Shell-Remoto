@@ -44,12 +44,6 @@ int main()
                 printf("Se ha creado el archivo '%s'.\n", filename);
                 TCP_Write_String(clientSocket, "Se ha creado el archivo");
                 fclose(archivo);
-                
-                // Aquí podrías establecer los permisos deseados del archivo recién creado
-                // Por ejemplo, establecer permisos 0644 (lectura y escritura para el propietario, solo lectura para el grupo y otros)
-                if (chmod(filename, (mode_t)0666) == -1) {
-                    printf("Error al establecer los permisos del archivo '%s'.\n", filename);
-                }
             } else {
                 printf("No se pudo crear el archivo '%s'.\n", filename);
                 TCP_Write_String(clientSocket, "El archivo no se pudo crear en el servidor.");
