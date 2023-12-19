@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "doc_code/tcp.h"
-#include "doc_code/leercadena.h"
+#include "tcp.h"
+#include "leercadena.h"
 
 #define MAX_COMMAND_LENGTH 100
 #define MAX_RESPONSE_LENGTH BUFSIZ
