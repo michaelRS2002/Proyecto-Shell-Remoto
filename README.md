@@ -12,7 +12,7 @@ Hacemos un copia del repositorio escribiendo en la terminal asi:
 
 Abrimos la carpeta y revisamos que se hayan guardado todos los archivos asi
 
-`cd Proyecto-Shell-Remoto-SO/`
+`cd Proyecto-Shell-Remoto/`
 
 `ls`
 ### Segundo Paso
@@ -20,22 +20,20 @@ Creamos un network donde se van a comunicar los contenedores cliente-servidor as
 
 `docker network create workspace`
 
-Creamos 2 contenedores uno para el servidor y otro para cliente con el siguiente comando 
-
-`docker container run --name servidor -v $(pwd):/servidor -it --network workspace ubuntu`
-
-Comando `Ctrl+D`
-
-`docker container run --name cliente -v $(pwd):/cliente -it --network workspace ubuntu`
-
-Comando `Ctrl+D`
-
-## Tercer Paso 
 Si estamos usando la aplicacion en el mismo computador dividimos la terminal con:
 
 `tmux`
 
 `Ctrl+B` + `Ctrl+2`
+
+Creamos 2 contenedores uno  para el servidor y otro para cliente con el siguiente comando cada uno en una parte del terminal 
+
+`docker container run --name servidor -v $(pwd):/servidor -it --network workspace ubuntu`
+
+`docker container run --name cliente -v $(pwd):/cliente -it --network workspace ubuntu`
+
+## Tercer Paso 
+Si estamos usando la aplicacion en el mismo computador dividimos la terminal con:
 
 Inicializamos el servidor: 
 
