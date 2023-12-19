@@ -29,27 +29,34 @@ int main()
       break;
     }
     if (strncmp(command, "create", 6) == 0) {
-            char *filename = strchr(command, ' ');
-            if (filename != NULL) {
-                filename++; // Avanzar al siguiente carácter después del espacio
-                printf("Archivo a crear: %s\n", filename);
-                if (access(filename, F_OK) != -1) {
-                // El archivo existe.
-                  TCP_Write_String(clientSocket, "El archivo ya existe.");
-                } else {
-                // Intentamos crear el archivo
-                    FILE* archivo = fopen(filename, "w");
-                    if (archivo != NULL) {
-                      printf("Se ha creado el archivo '%s'.\n", filename);
-                      TCP_Write_String(clientSocket, "Se ha creado el archivo");
-                      fclose(archivo);
-                      } else {
-                        printf("No se pudo crear el archivo '%s'.\n", filename);
-                        TCP_Write_String(clientSocket, "El archivo no se pudo crear en el servidor.");
-                      }
+    char *filename = strchr(command, ' ');
+    if (filename != NULL) {
+        filename++; // Avanzar al siguiente carácter después del espacio
+        printf("Archivo a crear: %s\n", filename);
+        
+        if (access(filename, F_OK) != -1) {
+            // El archivo existe
+            TCP_Write_String(clientSocket, "El archivo ya existe.");
+        } else {
+            // Intentamos crear el archivo
+            FILE* archivo = fopen(filename, "w");
+            if (archivo != NULL) {
+                printf("Se ha creado el archivo '%s'.\n", filename);
+                TCP_Write_String(clientSocket, "Se ha creado el archivo");
+                fclose(archivo);
+                
+                // Aquí podrías establecer los permisos deseados del archivo recién creado
+                // Por ejemplo, establecer permisos 0644 (lectura y escritura para el propietario, solo lectura para el grupo y otros)
+                if (chmod(filename, 0666) == -1) {
+                    printf("Error al establecer los permisos del archivo '%s'.\n", filename);
                 }
+            } else {
+                printf("No se pudo crear el archivo '%s'.\n", filename);
+                TCP_Write_String(clientSocket, "El archivo no se pudo crear en el servidor.");
             }
+        }
     }
+}
     if (strncmp(command, "edit", 4) == 0) {
             char *filename = strchr(command, ' ');
             if (filename != NULL) {
