@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
       printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response, ANSI_COLOR_RESET);
       bzero(response, MAX_RESPONSE_LENGTH);
     }
-    bzero(comando, MAX_COMMAND_LENGTH);
+    //bzero(comando, MAX_COMMAND_LENGTH);
   }
 
   TCP_Close(clientSocket);
