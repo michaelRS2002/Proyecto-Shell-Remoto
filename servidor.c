@@ -82,7 +82,7 @@ int main()
         }else {
         TCP_Write_String(clientSocket, "Falta el nombre del archivo.");
         }
-    else{
+    if{
     if (pid == 0)
     {
       // Redirigir la salida estándar al socket
