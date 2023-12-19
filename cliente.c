@@ -105,7 +105,6 @@ int main(int argc, char *argv[])
       bzero(response, MAX_RESPONSE_LENGTH);
     }
     //bzero(comando, MAX_COMMAND_LENGTH);
-  }
 
   TCP_Close(clientSocket);
   return 0;
