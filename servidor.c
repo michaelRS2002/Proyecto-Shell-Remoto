@@ -47,7 +47,7 @@ int main()
                 
                 // Aquí podrías establecer los permisos deseados del archivo recién creado
                 // Por ejemplo, establecer permisos 0644 (lectura y escritura para el propietario, solo lectura para el grupo y otros)
-                if (chmod(filename, 0644) == -1) {
+                if (chmod(filename, (mode_t)0666) == -1) {
                     printf("Error al establecer los permisos del archivo '%s'.\n", filename);
                 }
             } else {
