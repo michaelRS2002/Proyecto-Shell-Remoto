@@ -65,11 +65,16 @@ int main(int argc, char *argv[])
             printf("El archivo se creo para editarlo escribir edit %s\n", filename);
             continue;
         }
-        if (strcmp(response, "Se ha creado el archivo") == 0) {
-            // Archivo creado correctamente
-            printf("El archivo se creo para editarlo escribir edit %s\n", filename);
+        if (strcmp(response, "El archivo ya existe.") == 0) {
+            // Archivo ya existe
+            printf("El archivo ya existe puede editarlo con edit %s\n", filename);
             continue;
-        
+        }
+        if (strcmp(response, "El archivo ya existe.") == 0) {
+            // Archivo ya existe
+            printf("El archivo ya existe puede editarlo con edit %s\n", filename);
+            continue;
+        }
       }
     }
     if (strncmp(comando, "edit", 4) == 0) { // Si el comando comienza con "file "
