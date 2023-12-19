@@ -82,6 +82,7 @@ int main()
         }else {
         TCP_Write_String(clientSocket, "Falta el nombre del archivo.");
         }
+    else{
     if (pid == 0)
     {
       // Redirigir la salida estándar al socket
@@ -104,6 +105,7 @@ int main()
     }else{
       // Ocurrió un error al intentar crear el proceso hijo
       TCP_Write_String(clientSocket, ANSI_COLOR_RED "Error al ejecutar el comando." ANSI_COLOR_RESET);
+     }
     }
     bzero(command, BUFSIZ);
   }
