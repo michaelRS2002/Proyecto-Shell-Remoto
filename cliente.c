@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
   while (1)
   {
     char comando[MAX_COMMAND_LENGTH];
+    char response[MAX_RESPONSE_LENGTH];
     bzero(comando, MAX_COMMAND_LENGTH);
 
     printf("%sDigite su comando (escriba '%ssalida%s' para salir): %s", ANSI_COLOR_BLUE, ANSI_COLOR_RED, ANSI_COLOR_BLUE, ANSI_COLOR_RESET);
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
 
         char response[MAX_RESPONSE_LENGTH];
         TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
+      }
         if (strcmp(response, "Archivo creado con éxito.") == 0) {
             printf("El archivo fue creado con exito para editarlo usa file edit <filename>");
             continue;
@@ -76,7 +78,6 @@ int main(int argc, char *argv[])
           printf("El archivo no existe en el servidor.");
           continue;
         }
-      }
       else{
         printf("Falta el nombre del archivo.\n");
         // Limpiar el búfer para volver a pedir un nuevo comando al usuario
