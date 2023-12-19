@@ -28,6 +28,20 @@ int main()
       TCP_Write_String(clientSocket, ANSI_COLOR_GREEN "Cerrando conexion..." ANSI_COLOR_RESET);
       break;
     }
+    if (strncmp(command, "file edit", 9) == 0) {
+            char *filename = strchr(command, ' ');
+            if (filename != NULL) {
+                filename++; // Avanzar al siguiente carácter después del espacio
+                printf("Archivo a editar: %s\n", filename);
+                if (access(filename, F_OK) != -1) {
+                  TCP_Write_String(clientSocket, "Puedes editar el archivo con nano");
+                } 
+                else {
+                printf("El archivo que pide cliente no existe o no se puede acceder.\n");
+                TCP_Write_String(clientSocket, "El archivo no existe en el servidor.");
+                }
+            }
+    }        
     pid_t pid = fork();
 
     if (pid == 0)
