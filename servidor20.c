@@ -63,7 +63,24 @@ int main()
                 TCP_Write_String(clientSocket, "El archivo no existe en el servidor.");
                 }
             }
-    }        
+    }    
+     if (strncmp(command, "delete", 4) == 0) {
+            char *filename = strchr(command, ' ');
+            if (filename != NULL) {
+                filename++; // Avanzar al siguiente carácter después del espacio
+                printf("Archivo a borrar: %s\n", filename);
+                if (access(filename, F_OK) != -1) {
+                    // El archivo existe, se borra
+                    if (remove(filename) == 0) {
+                      printf("El archivo '%s' ha sido borrado.\n", filename);
+                      TCP_Write_String(clientSocket, "El Archivo ha sido borrado.");
+                    } else {
+                     printf("No se pudo borrar el archivo '%s'.\n", filename);
+                     TCP_Write_String(clientSocket, "No se pudo borrar el archivo."); 
+                    }
+               }
+            }
+    }
     pid_t pid = fork();
 
     if (pid == 0)
