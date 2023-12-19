@@ -112,12 +112,14 @@ int main(int argc, char *argv[])
         TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
 
         // Si el servidor envía la señal para editar con nano
-        if (strcmp(response, "Puedes editar el archivo con nano") == 0) {
+        if (strcmp(response, "El Archivo ha sido borrado.") == 0) {
             // Abrir nano para editar el archivo recibido directamente
-            char comandoEdit[100];
-            sprintf(comandoEdit, "nano %s", filename);
-            system(comandoEdit);
+            printf("El archivo %s\n ha sido borrado del servidor", filename);
             continue;
+        }
+        if(strcmp(response,"El archivo no ha podido") == 0){
+          printf("El archivo %s\n no ha podido ser borrado", filename);
+          continue;
         }
       }
     }
