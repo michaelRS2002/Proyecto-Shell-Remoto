@@ -24,11 +24,11 @@ Creamos 2 contenedores uno para el servidor y otro para cliente con el siguiente
 
 `docker container run --name servidor -v $(pwd):/servidor -it --network workspace ubuntu`
 
-Comando `Ctrl+C`
+Comando `Ctrl+D`
 
 `docker container run --name cliente -v $(pwd):/cliente -it --network workspace ubuntu`
 
-Comando `Ctrl+C`
+Comando `Ctrl+D`
 
 ## Tercer Paso 
 Si estamos usando la aplicacion en el mismo computador dividimos la terminal e inicializamos primero el servidor con:
