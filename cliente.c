@@ -59,15 +59,14 @@ int main(int argc, char *argv[])
         TCP_Write_String(clientSocket, filename);
         printf("Comando de archivo mandado al servidor: %s\n", filename);
 
-        char response[MAX_RESPONSE_LENGTH];
+        //char response[MAX_RESPONSE_LENGTH];
         TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
-      }
+      
         if (strcmp(response, "Archivo creado con éxito.") == 0) {
             printf("El archivo fue creado con exito para editarlo usa file edit <filename>");
             continue;
         }
-      }
-    }
+
         // Si el servidor envía la señal para editar con nano
         if (strcmp(response, "Puedes editar el archivo con nano") == 0) {
             // Abrir nano para editar el archivo recibido directamente
@@ -86,6 +85,9 @@ int main(int argc, char *argv[])
         continue; // Continuar para pedir un nuevo comando sin ejecutar el resto del código
       }
     }
+  }
+ }
+}
     
 
     char response[MAX_RESPONSE_LENGTH];
