@@ -67,7 +67,7 @@ int main()
             char *filename = strchr(subcommand, ' ');
             if (filename != NULL) {
                 filename++; // Avanzar al siguiente carácter después del espacio
-                printf("Archivo a borrar: %s\n", filename
+                printf("Archivo a borrar: %s\n", filename);
                 if (remove(filename) == 0) {
                   printf("Archivo eliminado exitosamente.\n");
                   TCP_Write_String(clientSocket, "Archivo eliminado exitosamente.\n" );
