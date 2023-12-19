@@ -70,9 +70,9 @@ int main(int argc, char *argv[])
             printf("El archivo ya existe puede editarlo con edit %s\n", filename);
             continue;
         }
-        if (strcmp(response, "El archivo ya existe.") == 0) {
-            // Archivo ya existe
-            printf("El archivo ya existe puede editarlo con edit %s\n", filename);
+        if (strcmp(response, "El archivo no se pudo crear en el servidor.") == 0) {
+            // Archivo no se pudo crear
+            printf("Error no se pudo crear archivo.\n");
             continue;
         }
       }
