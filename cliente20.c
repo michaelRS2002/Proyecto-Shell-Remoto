@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
             continue;
         }
         if(strcmp(response,"No se pudo borrar el archivo.") == 0){
-          printf("El archivo %s\n no ha podido ser borrado", filename);
+          printf("El archivo %s\n no ha podido ser borrado.\n", filename);
           continue;
         }
       }
