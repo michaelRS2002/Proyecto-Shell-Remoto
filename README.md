@@ -8,7 +8,7 @@ Para hacer funcionar el proyecto debemos contar con Docker y disponer de una ter
 Abre una terminal tipo Linux. 
 Hacemos un copia del repositorio escribiendo en la terminal asi:
 
-`git clone https://github.com/michaelRS2002/Proyecto-Shell-Remoto-SO`
+`git clone https://github.com/michaelRS2002/Proyecto-Shell-Remoto`
 
 Abrimos la carpeta y revisamos que se hayan guardado todos los archivos asi
 
@@ -24,7 +24,7 @@ Si estamos usando la aplicacion en el mismo computador dividimos la terminal con
 
 `tmux`
 
-`Ctrl+B` + `Ctrl+2`
+`Ctrl+B` + `Shift+2`
 
 Para ir de un lado a otro de pantalla  `Ctrl+B` + Flecha
 
@@ -55,4 +55,4 @@ Ejecutamos siempre de primero el servidor
 
 `./Servidor `
 
-`./cliente  ` 
+`./cliente servidor 12348 ` 
