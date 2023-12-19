@@ -26,6 +26,8 @@ Si estamos usando la aplicacion en el mismo computador dividimos la terminal con
 
 `Ctrl+B` + `Ctrl+2`
 
+Para ir de un lado a otro de pantalla  `Ctrl+B` + Flecha
+
 Creamos 2 contenedores uno  para el servidor y otro para cliente con el siguiente comando cada uno en una parte del terminal 
 
 `docker container run --name servidor -v $(pwd):/servidor -it --network workspace ubuntu`
@@ -33,8 +35,24 @@ Creamos 2 contenedores uno  para el servidor y otro para cliente con el siguient
 `docker container run --name cliente -v $(pwd):/cliente -it --network workspace ubuntu`
 
 ## Tercer Paso 
-Si estamos usando la aplicacion en el mismo computador dividimos la terminal con:
+Acceder a la carpeta servidor y la carpeta cliente usa
 
-Inicializamos el servidor: 
+`cd servidor`
 
-`docker start servidor`
+`cd cliente`
+
+Revisamos si tenemos archivos `ls`
+
+Si es primera vez que lo ejecutamos escribimos `apt update && apt install -y build-essential` en ambas terminales
+
+Compilamos
+
+`gcc -o servidor servidor.c tcp.c leercadena.c ` 
+
+`gcc -o cliente cliente.c tcp.c leercadena.c ` 
+
+Ejecutamos siempre de primero el servidor
+
+`./Servidor `
+
+`./cliente  ` 
