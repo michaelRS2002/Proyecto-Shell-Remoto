@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     if (strncmp(comando, "file", 4) == 0) { // Si el comando comienza con "file "
       char *subcommand = strchr(comando,' ');
       if (strncmp(subcommand, "create", 6) == 0 || strncmp(subcommand, "edit", 4) == 0 || strncmp(subcommand, "delete", 6) == 0) {
-        char *filename = strchr(command, ' ');
+        char *filename = strchr(comando, ' ');
       if (filename != NULL) {
         filename++; // Avanzar al nombre del archivo después del espacio
         
