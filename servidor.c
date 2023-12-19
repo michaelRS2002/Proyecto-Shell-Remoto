@@ -73,18 +73,15 @@ int main()
                   TCP_Write_String(clientSocket, "Archivo eliminado exitosamente.\n" );
                  } else {
                    printf("Error al intentar eliminar el archivo.\n");
-            }
-            }
-        } else {
+                   }
+                }
+              }
+           }else {
             TCP_Write_String(clientSocket, "Comando no reconocido para el archivo.");
-        }
-    } else {
+        }else {
         TCP_Write_String(clientSocket, "Falta el nombre del archivo.");
-    }
-}
+        }
       }
-    }
-  
     if (pid == 0)
     {
       // Redirigir la salida estándar al socket
@@ -104,8 +101,7 @@ int main()
       waitpid(pid, NULL, 0);
       // Enviar marca de fin de respuesta
       TCP_Write_String(clientSocket, "$");
-    }
-    else
+    }else
     {
       // Ocurrió un error al intentar crear el proceso hijo
       TCP_Write_String(clientSocket, ANSI_COLOR_RED "Error al ejecutar el comando." ANSI_COLOR_RESET);
