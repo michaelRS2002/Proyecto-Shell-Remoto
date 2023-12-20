@@ -64,6 +64,7 @@ int main()
             }
         }
     }
+  }
     if (strncmp(command, "edit", 4) == 0) {
             char *filename = strchr(command, ' ');
             if (filename != NULL) {
