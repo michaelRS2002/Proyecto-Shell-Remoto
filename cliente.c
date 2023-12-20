@@ -153,11 +153,13 @@ int main(int argc, char *argv[])
       {
         break;
       }
+      if (strcmp(response, "Error al ejecutar comando") == 0){
+        break;
+      }
       printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response, ANSI_COLOR_RESET);
       bzero(response, MAX_RESPONSE_LENGTH);
     }
     bzero(comando, MAX_COMMAND_LENGTH);
-    continue;
   }
 
   TCP_Close(clientSocket);
