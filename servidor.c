@@ -16,8 +16,9 @@
 void manejo_comando_edit(int clientSocket, const char *filename) {
     // Envía el mensaje al cliente
     TCP_Write_String(clientSocket, "Puedes editar el archivo con nano");
-    // Ejecuta nano en el servidor
-    char response[MAX_RESPONSE_LENGTH];
+    // Ejecuta nano en el cliente y espera a que termine
+     char response[MAX_RESPONSE_LENGTH];
+     TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
      if (strcmp(response, "Edicion terminada") == 0){
     // Envía la marca de fin de respuesta al cliente
     	TCP_Write_String(clientSocket, "$");
