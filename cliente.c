@@ -91,12 +91,23 @@ int main(int argc, char *argv[])
 
         // Si el servidor envía la señal para editar con nano
         if (strcmp(response, "Puedes editar el archivo con nano") == 0) {
-            // Abrir nano para editar el archivo recibido directamente
             char comandoEdit[100];
             sprintf(comandoEdit, "nano %s", filename);
-            system(comandoEdit);
-            TCP_Write_String(clientSocket, "Edicion terminada");
-            continue;
+            pid_t pid = fork();
+            if (pid == 0) {
+                // Proceso hijo: ejecutar nano
+                system(comandoEdit);
+                exit(0);
+            } else if (pid > 0) {
+                // Proceso padre: esperar a que el hijo termine
+                waitpid(pid, NULL, 0);
+                // Informar al servidor que la edición ha terminado
+                TCP_Write_String(clientSocket, "Edicion terminada");
+                continue;
+            } else {
+                // Ocurrió un error al intentar crear el proceso hijo
+                printf("Error al crear el proceso hijo.\n");
+            }
         }
       }
     }
