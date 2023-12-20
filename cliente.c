@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
             pid_t pid = fork();
             if (pid == 0) {
                 // Proceso hijo: ejecutar nano
-                system(comandoEdit);
+                execlp("nano", "nano", filename, NULL);
                 exit(0);
             } else if (pid > 0) {
                 // Proceso padre: esperar a que el hijo termine
