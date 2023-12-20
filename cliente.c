@@ -95,6 +95,7 @@ int main(int argc, char *argv[])
             char comandoEdit[100];
             sprintf(comandoEdit, "nano %s", filename);
             system(comandoEdit);
+            TCP_Write_String(clientSocket, "Edicion terminada");
             continue;
         }
       }
