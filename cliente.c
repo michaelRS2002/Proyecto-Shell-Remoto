@@ -63,17 +63,17 @@ int main(int argc, char *argv[])
         if (strcmp(response, "Se ha creado el archivo") == 0) {
             // Archivo creado correctamente
             printf("El archivo se creo para editarlo escribir edit %s\n", filename);
-            continue;
+            break;
         }
         if (strcmp(response, "El archivo ya existe.") == 0) {
             // Archivo ya existe
             printf("El archivo ya existe puede editarlo con edit %s\n", filename);
-            continue;
+            break;
         }
         if (strcmp(response, "El archivo no se pudo crear en el servidor.") == 0) {
             // Archivo no se pudo crear
             printf("Error no se pudo crear archivo.\n");
-            continue;
+            break;
         }
       }
     }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
             char comandoEdit[100];
             sprintf(comandoEdit, "nano %s", filename);
             system(comandoEdit);
-            continue;
+            break;
         }
       }
     }
@@ -115,11 +115,11 @@ int main(int argc, char *argv[])
         if (strcmp(response, "El Archivo ha sido borrado.") == 0) {
             // Abrir nano para editar el archivo recibido directamente
             printf("El archivo %s\n ha sido borrado del servidor.\n", filename);
-            continue;
+            break;
         }
         if(strcmp(response,"No se pudo borrar el archivo.") == 0){
           printf("El archivo %s\n no ha podido ser borrado.\n", filename);
-          continue;
+          break;
         }
       }
     }
