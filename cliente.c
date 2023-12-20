@@ -104,7 +104,11 @@ int main(int argc, char *argv[])
                 waitpid(pid, NULL, 0);
                 // Informar al servidor que la edición ha terminado
                 TCP_Write_String(clientSocket, "Edicion terminada");
-                continue;
+                char response[MAX_RESPONSE_LENGTH];
+                TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
+                if (strcmp(response, "Recibido") == 0){
+                   continue;
+                }
             } else {
                 // Ocurrió un error al intentar crear el proceso hijo
                 printf("Error al crear el proceso hijo.\n");
