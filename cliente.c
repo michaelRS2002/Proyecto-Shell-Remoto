@@ -63,17 +63,17 @@ int main(int argc, char *argv[])
         if (strcmp(response, "Se ha creado el archivo") == 0) {
             // Archivo creado correctamente
             printf("El archivo se creo para editarlo escribir edit %s\n", filename);
-            break;
+            continue;
         }
         if (strcmp(response, "El archivo ya existe.") == 0) {
             // Archivo ya existe
             printf("El archivo ya existe puede editarlo con edit %s\n", filename);
-            break;
+            continue;
         }
         if (strcmp(response, "El archivo no se pudo crear en el servidor.") == 0) {
             // Archivo no se pudo crear
             printf("Error no se pudo crear archivo.\n");
-            break;
+            continue;
         }
       }
     }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
             char comandoEdit[100];
             sprintf(comandoEdit, "nano %s", filename);
             system(comandoEdit);
-            break;
+            continue;
         }
       }
     }
@@ -115,29 +115,29 @@ int main(int argc, char *argv[])
         if (strcmp(response, "El Archivo ha sido borrado.") == 0) {
             // Abrir nano para editar el archivo recibido directamente
             printf("El archivo %s\n ha sido borrado del servidor.\n", filename);
-            break;
+            continue;
         }
         if(strcmp(response,"No se pudo borrar el archivo.") == 0){
           printf("El archivo %s\n no ha podido ser borrado.\n", filename);
-          break;
+          continue;
         }
       }
     }
     
 
-    char response[MAX_RESPONSE_LENGTH];
-    bzero(response, MAX_RESPONSE_LENGTH);
+    char response2[MAX_RESPONSE_LENGTH];
+    bzero(response2, MAX_RESPONSE_LENGTH);
 
     // Leer hasta encontrar la marca de fin de respuesta
     while (1)
     {
-      TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
-      if (strcmp(response, "$") == 0)
+      TCP_Read_String(clientSocket, response2, MAX_RESPONSE_LENGTH);
+      if (strcmp(response2, "$") == 0)
       {
         break;
       }
-      printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response, ANSI_COLOR_RESET);
-      bzero(response, MAX_RESPONSE_LENGTH);
+      printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response2, ANSI_COLOR_RESET);
+      bzero(response2, MAX_RESPONSE_LENGTH);
     }
     bzero(comando, MAX_COMMAND_LENGTH);
   }
