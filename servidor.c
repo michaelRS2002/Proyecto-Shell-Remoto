@@ -13,6 +13,26 @@
 #define ANSI_COLOR_RESET "\x1b[0m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 
+void manejo_comando_edit(int clientSocket, const char *filename) {
+    // Envía el mensaje al cliente
+    TCP_Write_String(clientSocket, "Puedes editar el archivo con nano");
+    // Ejecuta nano en el servidor
+    pid_t child_pid = fork();
+    if (child_pid == 0) {
+        execlp("/bin/sh", "/bin/sh", "-c", "nano", filename, NULL);
+        perror("Error al intentar ejecutar nano");
+        exit(EXIT_FAILURE);
+    } else if (child_pid > 0) {
+        // Espera a que el proceso hijo termine antes de continuar
+        waitpid(child_pid, NULL, 0);
+    } else {
+        perror("Error al intentar crear un nuevo proceso");
+    }
+    // Envía la marca de fin de respuesta al cliente
+    TCP_Write_String(clientSocket, "$");
+}
+
+
 int main()
 {
   int serverSocket = TCP_Server_Open(SERVER_PORT);
@@ -56,13 +76,7 @@ int main()
             if (filename != NULL) {
                 filename++; // Avanzar al siguiente carácter después del espacio
                 printf("Archivo a editar: %s\n", filename);
-                if (access(filename, F_OK) != -1) {
-                  TCP_Write_String(clientSocket, "Puedes editar el archivo con nano");
-                } 
-                else {
-                printf("El archivo que pide cliente no existe o no se puede acceder.\n");
-                TCP_Write_String(clientSocket, "El archivo no existe en el servidor.");
-                }
+		manejo_comando_edit(clientSocket,filename);
             }
     }    
      if (strncmp(command, "delete", 4) == 0) {
