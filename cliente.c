@@ -137,19 +137,19 @@ int main(int argc, char *argv[])
     }
     
 
-    char response2[MAX_RESPONSE_LENGTH];
-    bzero(response2, MAX_RESPONSE_LENGTH);
+    char response[MAX_RESPONSE_LENGTH];
+    bzero(response, MAX_RESPONSE_LENGTH);
 
     // Leer hasta encontrar la marca de fin de respuesta
     while (1)
     {
-      TCP_Read_String(clientSocket, response2, MAX_RESPONSE_LENGTH);
-      if (strcmp(response2, "$") == 0)
+      TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
+      if (strcmp(response, "$") == 0)
       {
         break;
       }
-      printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response2, ANSI_COLOR_RESET);
-      bzero(response2, MAX_RESPONSE_LENGTH);
+      printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response, ANSI_COLOR_RESET);
+      bzero(response, MAX_RESPONSE_LENGTH);
     }
     bzero(comando, MAX_COMMAND_LENGTH);
   }
