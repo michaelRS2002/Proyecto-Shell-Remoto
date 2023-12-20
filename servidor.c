@@ -103,7 +103,8 @@ int main()
 
       // Ejecutar el comando y salir
       execlp("/bin/sh", "/bin/sh", "-c", command, NULL);
-      exit(0);
+      perror("Error al ejecutar el comando en el SERVIDOR");
+      exit(1);
     }
     else if (pid > 0)
     {
