@@ -21,7 +21,7 @@ void manejo_comando_edit(int clientSocket, const char *filename) {
      TCP_Read_String(clientSocket, response, MAX_RESPONSE_LENGTH);
      if (strcmp(response, "Edicion terminada") == 0){
     // Envía la marca de fin de respuesta al cliente
-	Printf("Edicion por parte del cliente completada");     
+	printf("Edicion por parte del cliente completada");     
     	TCP_Write_String(clientSocket, "Recibido");
      }
 }
