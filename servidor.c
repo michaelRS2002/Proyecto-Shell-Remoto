@@ -29,7 +29,7 @@ int main()
       break;
     }
     if (strncmp(command, "create", 6) == 0) {
-    char *filename = strchr(command, ' ');
+      char *filename = strchr(command,'');
     if (filename != NULL) {
         filename++; // Avanzar al siguiente carácter después del espacio
         printf("Archivo a crear: %s\n", filename);
