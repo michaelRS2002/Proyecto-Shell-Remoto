@@ -105,16 +105,19 @@ int main()
       execlp("/bin/sh", "/bin/sh", "-c", command, NULL);
       perror("Error al ejecutar el comando en el SERVIDOR");
       exit(1);
-    }
-    else if (pid > 0)
-    {
-      // Padre: esperar que el proceso hijo termine antes de continuar
-      waitpid(pid, NULL, 0);
-      // Enviar marca de fin de respuesta
-      TCP_Write_String(clientSocket, "$");
-      continue;
-    }
-    else
+    }else if (pid > 0) {
+    // Padre: esperar que el proceso hijo termine antes de continuar
+    int status;
+    waitpid(pid, &status, 0);
+    // Verificar si el proceso hijo finalizó correctamente
+    if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+        // Comando ejecutado sin errores, enviar marca de fin de respuesta
+        TCP_Write_String(clientSocket, "$");
+    } else {
+        // Comando finalizado con errores, enviar mensaje de error al cliente
+        TCP_Write_String(clientSocket, ANSI_COLOR_RED "Error al ejecutar el comando." ANSI_COLOR_RESET);
+       }
+    }  else
     {
       // Ocurrió un error al intentar crear el proceso hijo
       TCP_Write_String(clientSocket, ANSI_COLOR_RED "Error al ejecutar el comando." ANSI_COLOR_RESET);
