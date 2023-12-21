@@ -122,6 +122,7 @@ int main()
       // Ocurrió un error al intentar crear el proceso hijo
       TCP_Write_String(clientSocket, ANSI_COLOR_RED "Error al ejecutar el comando." ANSI_COLOR_RESET);
     }
+    TCP_Write_String(clientSocket, "$");
     bzero(command, BUFSIZ);
   }
 
