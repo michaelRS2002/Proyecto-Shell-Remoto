@@ -152,8 +152,7 @@ int main(int argc, char *argv[])
       if (strcmp(response, "$") == 0)
       {
         break;
-      }
-      if (strcmp(response, "Error al ejecutar comando.") == 0){
+      } else if (strcmp(response, "Error al ejecutar el comando.") == 0){
         break;
       }
       printf("%s -> \n%s%s\n", ANSI_COLOR_GREEN, response, ANSI_COLOR_RESET);
